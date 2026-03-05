@@ -5,10 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class AddAddressPagePOM
 {
     @FindBy(xpath = "//div[@id='Address Type']/descendant::input")
-    private WebElement addressType;
+    private List<WebElement> addressType;
 
     @FindBy(xpath = "//input[@id='Name']")
     private WebElement nameField;
@@ -36,7 +38,7 @@ public class AddAddressPagePOM
         PageFactory.initElements(driver, this);
     }
 
-    public WebElement getAddressType() {
+    public List<WebElement> getAddressType() {
         return addressType;
     }
 
