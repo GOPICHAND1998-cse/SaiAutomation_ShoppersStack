@@ -103,7 +103,7 @@ public class PurchasingWatchBaseClass
         login.performLogIn(email,password);
     }
 
-    @AfterClass(enabled = false)
+    @AfterClass
     public void doLogOut()
     {
         actionUtil.clickOnElement(nav.getProfileIcon());

@@ -35,9 +35,9 @@ public class CustomListeners implements ITestListener
 
             field.setAccessible(true);
 
-            WebDriver Listenerdriver = (WebDriver) field.get(object);
+            WebDriver ListenerDriver = (WebDriver) field.get(object);
 
-            TakesScreenshot screenshot = (TakesScreenshot) Listenerdriver;
+            TakesScreenshot screenshot = (TakesScreenshot) ListenerDriver;
 
             File tempFile = screenshot.getScreenshotAs(OutputType.FILE);
 

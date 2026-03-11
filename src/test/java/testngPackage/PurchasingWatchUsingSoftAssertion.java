@@ -10,68 +10,47 @@ import org.testng.asserts.SoftAssert;
 
 
     @Listeners(CustomListeners.class)
-    public class PurchasingWatchUsingSoftAssertion extends PurchasingWatchBaseClass {
+    public class PurchasingWatchUsingSoftAssertion extends PurchasingWatchBaseClass
+    {
+        WebDriver driver;
 
-        WebDriver driver = browserUtil.getDriver();
-
-
-        public void openHomePage() {
+        @Test
+        public void openHomepage()
+        {
             driver = browserUtil.getDriver();
 
-            SoftAssert soft = new SoftAssert();
+            SoftAssert sAssert = new SoftAssert();
+            sAssert.assertEquals(driver.getCurrentUrl(),"https://www.shoppersstack.com/user-signin","The LogIn Unsuccessful");
+            Reporter.log("The LogIn is Successful",true);
+            sAssert.assertAll();
+        }
 
-            soft.assertEquals(driver.getCurrentUrl(), "https://www.shoppersstack.com/", "The login was unsuccesful");
-            Reporter.log("The login was succesfull");
+        @Test(dependsOnMethods = "openHomepage")
+        public void selectDesiredProduct()
+        {
+            SoftAssert sAssert = new SoftAssert();
 
             actionUtil.scrollTillElement(home.getDesiredProd());
-            soft.assertTrue(home.getDesiredProd().isDisplayed(),"The DesiredProduct is not displayed");
+            sAssert.assertTrue(home.getDesiredProd().isDisplayed(),"The DesiredProduct is not displayed");
             Reporter.log("The desired Product is displayed",true);
             actionUtil.clickOnElement(home.getDesiredProd());
 
-            try{
-                Thread.sleep(2000);
-            }
-            catch (Exception e) {
+            try{Thread.sleep(2000);} catch (Exception e) {
                 e.printStackTrace();
             }
-
-            jsUtil.clickOnElementUsingJS(product.getaddToCartBtn());
-            soft.assertEquals(product.getaddToCartBtn().getText().toLowerCase(),"added","The Product is not added to Cart");
-            Reporter.log("The product is added to Cart",true);
-
-            soft.assertAll();
+            sAssert.assertAll();
         }
 
-        @Test
-        public void selectDesiredProduct() {
-            SoftAssert soft=new SoftAssert();
-
-            actionUtil.scrollTillElement(home.getDesiredProd());
-            soft.assertTrue(home.getDesiredProd().isDisplayed(),"The DesiredProduct is not displayed");
-            Reporter.log("The desired Product is displayed",true);
-            actionUtil.clickOnElement(home.getDesiredProd());
-
-
-            try{
-                Thread.sleep(2000);
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            soft.assertAll();
-        }
-
-        @Test
-        public void AddToCart() {
-            SoftAssert soft=new SoftAssert();
+        @Test(dependsOnMethods = "selectDesiredProduct" )
+        public void addTocart()
+        {
+            SoftAssert sAssert = new SoftAssert();
 
             jsUtil.clickOnElementUsingJS(product.getaddToCartBtn());
-            soft.assertEquals(product.getaddToCartBtn().getText().toLowerCase(),"added","The Product is not added to Cart");
+            sAssert.assertEquals(product.getaddToCartBtn().getText().toLowerCase(),"added","The Product is not added to Cart");
             Reporter.log("The product is added to Cart",true);
 
-            soft.assertAll();
-
+            sAssert.assertAll();
         }
     }
 

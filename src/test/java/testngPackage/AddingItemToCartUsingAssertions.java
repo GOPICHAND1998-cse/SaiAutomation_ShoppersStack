@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 
 public class AddingItemToCartUsingAssertions extends PurchasingWatchBaseClass
 {
-    WebDriver driver = browserUtil.getDriver();
+    WebDriver driver;
 
     @Test
-    public void getElectronics()
+    public void goToElectronics()
     {
         driver = browserUtil.getDriver();
 //        actionUtil.clickOnElement(nav.getElectronicsLink());
