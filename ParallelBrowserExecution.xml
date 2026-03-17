@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Cross Browser Test Suite">
+
+    <test name="Chrome_Execution">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="testngPackage.AddJacketToCartParallelBrowser"/>
+        </classes>
+    </test>
+
+    <test name="FireFox_Execution">
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="testngPackage.AddJacketToCartParallelBrowser"/>
+        </classes>
+    </test>
+</suite>
